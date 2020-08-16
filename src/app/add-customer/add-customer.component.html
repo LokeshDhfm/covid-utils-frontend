@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Add Customer</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="customerFormGroup" (ngSubmit)="saveCustomer()" #form="ngForm">
+  <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Customer name</mat-label>
+        <input matInput formControlName="customerName" type="text"/>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions style="display: flex;">
+      <div class="spacer"></div>
+      <button mat-button color="primary" type="submit">Save</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

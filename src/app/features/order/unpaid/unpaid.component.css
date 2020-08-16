@@ -1,0 +1,43 @@
+table  {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 2%;
+}
+.inner-table {
+  margin: 3%;
+  display: table;
+  width: 80%;
+}
+
+.inner-table .mat-header-row{
+  background: #79a1d8;
+  height: 36px;
+}
+
+
+.mat-form-field {
+  font-size: 14px;
+
+}
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+tr.example-detail-row {
+  height: 0;
+}

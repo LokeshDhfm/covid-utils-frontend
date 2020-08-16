@@ -1,0 +1,11 @@
+
+.mat-card{
+  width: 350px;
+}
+.mat-form-field-wrapper {
+  position: relative;
+  width: 300px;
+}
+.spacer{
+  flex:1;
+}

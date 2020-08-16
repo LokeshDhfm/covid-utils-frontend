@@ -1,0 +1,22 @@
+<div class="content" role="main">
+  <app-home></app-home>
+  <div style="display: flex; flex-direction: column;">
+    <div>
+
+      <mat-card style="margin: 10vh">
+        <mat-card-header>
+          <mat-card-title>
+            Money made till now
+          </mat-card-title></mat-card-header>
+        <mat-card-content style="direction: rtl">
+          <h1>{{profit}}</h1>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+    <app-add-customer></app-add-customer>
+  </div>
+</div>
+<div class="footer">
+  <app-add-product></app-add-product>
+</div>

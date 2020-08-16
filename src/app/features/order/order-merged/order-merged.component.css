@@ -1,0 +1,13 @@
+.content {
+  /* display: flex; */
+  margin: 10vh auto;
+  padding: 0 16px;
+  max-width: 960px;
+  /* flex-direction: row; */
+  /* align-items: center; */
+  top: 100vh;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
