@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Product } from 'src/app/common/shared/interfaces/product';
+import { AlertServiceService } from 'src/app/core/services/alert-service.service';
 
 @Component({
   selector: 'app-unpaid',
@@ -22,19 +23,20 @@ import { Product } from 'src/app/common/shared/interfaces/product';
 })
 export class UnpaidComponent implements OnInit {
 
-
+  isLastRow = (data, index) => index === this.unpaidOrders.length;
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
 
   protected expandedRow: Order | null;
   protected unpaidOrders: Order[] = [];
-  displayedColumns: string[] = ['id', 'name','date','totalPrice'];
+  displayedColumns: string[] = ['id', 'name','date','totalPrice','payment-status'];
   dataSource: MatTableDataSource<Order>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   productDetails: Map<Product, Number> = new Map<Product, Number> ();
   constructor(
-    private apiService: HttpApiService
+    private apiService: HttpApiService,
+    private alertService: AlertServiceService
   ) {
 
   }
@@ -71,5 +73,29 @@ export class UnpaidComponent implements OnInit {
       })
     },(error)=> this.productDetails = new Map<Product,Number>())
   }
+  calculateTotal(){
+    var total: number = 0;
+    this.productDetails.forEach((value, key) => {
+      total += Number(key.sellingPrice) * Number(value);
+    })
+    return total;
+  }
 
+  calculateDue(){
+    var total: number = 0;
+    this.dataSource.filteredData.forEach((order) => {
+      total += Number(order.totalPrice);
+    })
+
+    return total;
+  }
+
+  changePaymentStatus(orderId: Number){
+    this.apiService.post<Order>('order/changePayment/'+orderId+'/'+true,null).subscribe((response)=>{
+      this.ngOnInit()
+      this.alertService.alert('Payment Status Successfully Changed to "Paid"', 5000);
+    }, (error) =>{
+      this.alertService.alert('Cannot change Payment Status', 8000)
+    })
+  }
 }

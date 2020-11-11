@@ -1,6 +1,6 @@
 <div class="content">
   <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Paid Orders">
+    <mat-tab label="Paid Orders" (click)="refreshData()">
       <app-paid></app-paid>
     </mat-tab>
     <mat-tab label="Unpaid orders">

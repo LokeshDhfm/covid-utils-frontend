@@ -4,7 +4,7 @@
   </mat-card-header>
   <form [formGroup]="customerFormGroup" (ngSubmit)="saveCustomer()" #form="ngForm">
   <mat-card-content>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Customer name</mat-label>
         <input matInput formControlName="customerName" type="text"/>
       </mat-form-field>

@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Product } from 'src/app/common/shared/interfaces/product';
+import { AlertServiceService } from 'src/app/core/services/alert-service.service';
 
 @Component({
   selector: 'app-paid',
@@ -27,14 +28,15 @@ export class PaidComponent implements OnInit {
 
   protected expandedRow: Order | null;
   protected paidOrders: Order[] = [];
-  displayedColumns: string[] = ['id', 'name','date', 'totalPrice'];
+  displayedColumns: string[] = ['id', 'name','date', 'totalPrice','payment-status'];
   dataSource: MatTableDataSource<Order>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   productDetails: Map<Product, Number> = new Map<Product, Number> ();
   constructor(
-    private apiService: HttpApiService
+    private apiService: HttpApiService,
+    private alertService: AlertServiceService
   ) {
 
   }
@@ -70,6 +72,15 @@ export class PaidComponent implements OnInit {
         this.productDetails.set(prod,response[key]);
       })
     },(error)=> this.productDetails = new Map<Product,Number>())
+  }
+
+  changePaymentStatus(orderId: Number){
+    this.apiService.post<Order>('order/changePayment/'+orderId+'/'+false,null).subscribe((response)=>{
+      this.ngOnInit()
+      this.alertService.alert('Payment Status Successfully Changed to "Paid"', 5000);
+    }, (error) =>{
+      this.alertService.alert('Cannot change Payment Status', 8000)
+    })
   }
 
 }

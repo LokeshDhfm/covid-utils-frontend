@@ -12,4 +12,7 @@ export class OrderMergedComponent implements OnInit {
   ngOnInit() {
   }
 
+  refreshData(){
+
+  }
 }

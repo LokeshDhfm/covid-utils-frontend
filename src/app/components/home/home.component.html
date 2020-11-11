@@ -14,7 +14,7 @@
           <mat-vertical-stepper linear #stepper>
             <mat-step errormessage="Customer name is required">
               <ng-template matStepLabel>Fill out Customer name</ng-template>
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="outline">
                 <mat-label>Customer Name</mat-label>
                 <mat-select formControlName="customerName">
                   <mat-option
@@ -42,7 +42,7 @@
                 >Cannot exceed max value : {{ maxQuantity }}</mat-error
               >
               <p>{{ message }}</p>
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="outline">
                 <mat-label>Product name</mat-label>
                 <mat-select formControlName="productName">
                   <mat-option
@@ -57,7 +57,7 @@
 
               <mat-form-field
                 style="width: 150px; margin-left: 10px;"
-                appearance="fill"
+                appearance="outline"
               >
                 <mat-label>Quantity</mat-label>
                 <input
